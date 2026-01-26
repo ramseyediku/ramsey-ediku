@@ -1,0 +1,54 @@
+<header class={'header'}>
+    <div class={'wrapper'}>
+        <nav class={'header__nav'} >
+            <ul>
+                <li><a href="">About</a></li>
+                <li><a href="">Work</a></li>
+                <li><a href="">Experience</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<style>
+    .header {
+        font-size: .9rem;
+    }
+    .header__img {
+        --img-dimension: 5em;
+        width: var(--img-dimension);
+        height: var(--img-dimension);
+        border-radius: 50%;
+    }
+    .header__nav {
+        ul {
+            padding-block: 1em;
+            list-style: none;
+            display: flex;
+            justify-content: end;
+            gap: 3.5em;
+
+            a {
+                color: var(--clr-light);
+                position: relative;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    top: 100%;
+                    height: 5px;
+                    width: 0%;
+                    border-radius: var(--border-radius);
+                    background-color: var(--clr-light);
+
+                    transition: width 350ms ease-in-out;
+                }
+                &:hover::before {
+                    width: 100%;
+
+                }
+            }
+        }
+    }
+
+</style>
