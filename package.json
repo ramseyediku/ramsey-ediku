@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/roboto-slab": "^5.2.8",
     "@fontsource/rammetto-one": "^5.2.7",
     "astro": "^5.16.15"
   }

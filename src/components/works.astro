@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import ArcheryProjectImage from '../images/archery.png'
+import PlaylistProjectImage from '../images/mixtape.png'
+
+---
+
+<section class={"works"} id="works">
+    <h2>Works</h2>
+    <div class={"work__projects"}>
+        <a href="#" class={"projects__item"}>
+            <Image src={ArcheryProjectImage} alt="Thumbnail for CSS Point and Click game." />
+        </a>
+        <a href="#" class={"projects__item"}>
+            <Image src={PlaylistProjectImage} alt="Thumbnail for Playlist Management app." />
+        </a>
+    </div>
+</section>
+
+<style>
+    .works {
+        margin-block: 4em;
+
+        .work__projects {
+            display: flex;
+            gap: 3em;
+        
+            img {
+                --img-dimension: 18rem;
+                border-radius: calc(var(--border-radius)/10);
+                width: var(--img-dimension);
+                height: calc(var(--img-dimension) * 1.5);
+                aspect-ratio: 284/416;
+                object-fit: cover;
+                transition: transform 500ms cubic-bezier(0.25, 0.65, 0.25, 1);
+                
+                &:hover {
+                    transform: translateY(-7.5px);
+                }
+            }
+        }
+    }
+   
+</style>
