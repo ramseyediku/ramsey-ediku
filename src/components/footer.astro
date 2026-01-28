@@ -1,14 +1,18 @@
 ---
-import Button from "./button.astro"
 ---
 <footer class={"footer"}>
     <div class={"wrapper"}>
         <h2 class={'footer__title'}>Get in touch. <br> I'll be happy to talk.</h2>
-        <form action="" method="post">
-            <input placeholder="name" type="text" name="name" id="name">
-            <input placeholder="email" type="email" name="email" id="email">
-            <textarea placeholder="message" name="message" id="message"></textarea>
-            <input type="submit">
+        <form class={"footer__form"} action="" method="post">
+            <div class={"footer__form__group"}>
+                <input required placeholder="NAME" type="text" name="name" id="name">
+                <input required placeholder="EMAIL" type="email" name="email" id="email">
+            </div>
+
+            <div class={"footer__form__group"}>
+                <textarea placeholder="MESSAGE" name="message" id="message" rows="1"></textarea>
+            </div>
+            <button class={"footer__form__submit"} type="submit">SUBMIT</button>
         </form>
     </div>
 </footer>
@@ -18,5 +22,39 @@ import Button from "./button.astro"
         background-color: var(--clr-accent);
         padding: 3em 2em;
         color: var(--clr-dark);
+        .footer__title {
+            font-size: 2.5rem;
+            margin-block: 0;
+        }
+        .footer__form {
+            margin-top: 2em;
+            width: 90%;
+            .footer__form__group {
+                width: 100%;
+                display: grid;
+                margin-top: 2.25em;
+                grid-template-columns: repeat(2,1fr);
+                gap: 2em;
+
+                &:has(textarea) {
+                    grid-template-columns: 1fr;
+                }
+            }
+            input, textarea {
+                border: 0;
+                padding-block: 2em .5em;
+                background-color: transparent;
+                border-bottom: solid 2px var(--clr-dark);
+            }
+            .footer__form__submit {
+                width: 20%;
+                margin-block: 1em;
+                background-color: var(--clr-dark);
+                color: var(--clr-light);
+                padding: .75em;
+                border: 0;
+                margin-top: 3.5em;
+            }
+        }
     }
 </style>
