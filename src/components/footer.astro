@@ -1,4 +1,22 @@
-<footer>
-    <div class="wrapper">
+---
+import Button from "./button.astro"
+---
+<footer class={"footer"}>
+    <div class={"wrapper"}>
+        <h2 class={'footer__title'}>Get in touch. <br> I'll be happy to talk.</h2>
+        <form action="" method="post">
+            <input placeholder="name" type="text" name="name" id="name">
+            <input placeholder="email" type="email" name="email" id="email">
+            <textarea placeholder="message" name="message" id="message"></textarea>
+            <input type="submit">
+        </form>
     </div>
 </footer>
+
+<style>
+    .footer {
+        background-color: var(--clr-accent);
+        padding: 3em 2em;
+        color: var(--clr-dark);
+    }
+</style>

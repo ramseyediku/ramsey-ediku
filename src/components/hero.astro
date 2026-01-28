@@ -1,3 +1,9 @@
+---
+import { Image } from 'astro:assets';
+import codepen from "../assets/brand-codepen.svg"
+import linkedin from "../assets/brand-linkedin.svg"
+import github from "../assets/brand-github.svg"
+---
 <section class={"hero"} id="about">
     <h1 class={"hero__title"}>Ramsey <br> Ediku</h1>
     <p>
@@ -7,12 +13,38 @@
         I have worked on projects that taught me the value of teamwork, creativity, and constant learning. 
         Right now, I am focused on growing my skills and becoming a well-rounded developer who creates meaningful, user-friendly experiences.
     </p>
+    <div class={"hero__links"}>
+        <a target="_blank" href="https://linkedin.com/in/ramseyediku"><Image alt="" src={linkedin}></Image></a>
+        <a target="_blank" href="http://github.com/ramseyediku"><Image alt="" src={github}></Image></a>
+        <a target="_blank" href="mailto:ramseyediku@protonmail.com"><Image alt="" src={github}></Image></a>
+        <a target="_blank" href="https://codepen.io/ramseyediku"><Image alt="" src={codepen}></Image></a>
+    </div>
 </section>
 
 <style>
 
-    .hero__title {
-        margin-block: 0.45em;
+    .hero {
+        .hero__title {
+            margin-block: 0 0.45em;
+        }
+        .hero__links {
+            display: flex;
+            margin-block: 2.5em 1.5em;
+            gap: 2em;
+
+            img {
+                --logo-dimension: 1.75em;
+                width: var(--logo-dimension);
+                height: var(--logo-dimension);
+                border-radius: 50%;
+                filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+
+                &:hover {
+                    background-color: black;
+                }
+            }
+        }
     }
+   
    
 </style>
