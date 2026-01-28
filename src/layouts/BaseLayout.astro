@@ -21,7 +21,7 @@ import '@fontsource-variable/roboto-slab';
 	/* global css reset */
 	:root {
 		--body-line-height: 1.5;
-		--heading-line-height: 1.1;
+		--heading-line-height: 1.25;
 	}
 
 	/* applying box-sizing of border-box */
@@ -59,7 +59,7 @@ import '@fontsource-variable/roboto-slab';
 		text-wrap: balance;
 		line-height: var(--heading-line-height);
 		font-family: 'Rammetto One', system-ui;
-		font-size: 3.5rem;
+		font-size: 3rem;
 	}
 
 	/* makes paragraphs wrap in a readable way, and prevents paragraphs being too long */
@@ -120,24 +120,18 @@ import '@fontsource-variable/roboto-slab';
 
 	/* add some marging to anchored elements */
 	:target {
-		scroll-margin-block: 5ex;
+		scroll-margin-block: 2em;
 	}
 
 	/* Remove all animations and transitions for users who disable them */
 	@media (prefers-reduced-motion: reduce) {
-	*,*::before,*::after,*:focus-within {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
-	}
-	}
-
-	body {
-		font-size: 1rem;
-		&:has(dialog[open]) {
-			overflow: hidden;
+		*,*::before,*::after,*:focus-within {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
 		}
 	}
+
 
 </style>
