@@ -1,11 +1,85 @@
 ---
-import { Image } from 'astro:assets';
-
+import { Image } from "astro:assets";
+import HeroImage from "../assets/ramsey.jpg";
 ---
 
+<section class={"hero"} id="hero">
+  <div class={"hero__content"}>
+    <h1 class={"titles"}>Hey, I’m Ramsey</h1>
+    <p>
+      I’m an early-career software engineer with a strong interest in web development. <br />
+      I build full-stack websites, working across both frontend and backend to ship useful, thoughtful
+      web experiences. I have a growing portfolio of projects, including some client work, personal web
+      apps, and frontend experiments.
+    </p>
+    <div class="hero__buttons">
+      <a class={"btn"} href="#projects">View My Work</a>
+      <a class={"btn btn--secondary"} href="#contact">Get in touch</a>
+    </div>
+  </div>
+  <div class={"hero__image"}>
+    <Image class="hero__image" src={HeroImage} alt="Hero image of Ramsey Ediku" />
+  </div>
+</section>
 
 <style>
+  .hero {
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+    gap: var(--space-6);
+    margin-block: var(--space-4);
 
-   
-   
+    .hero__content {
+      margin-right: var(--space-4);
+      h1 {
+        font-size: 4rem;
+        font-weight: 900;
+      }
+
+      p {
+        font-weight: 300;
+        margin-block: var(--space-6);
+      }
+    }
+
+    .hero__image img {
+      width: 100%;
+      aspect-ratio: 1/2;
+      border-radius: var(--border-radius);
+      height: 500px;
+      box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+
+      /* filter: brightness(1.01) contrast(1.05) saturate(1.03) sepia(0.01); */
+    }
+  }
+
+  .hero__buttons {
+    display: flex;
+    gap: var(--space-4);
+  }
+  .btn {
+    display: inline-block;
+    padding: var(--space-3) var(--space-7);
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+    text-decoration: none;
+    transition: background-color 300ms ease-in-out;
+    background-color: var(--clr-accent-2);
+    border-radius: calc(var(--border-radius) / 2);
+
+    &:hover {
+      background-color: var(--clr-accent-2);
+    }
+  }
+
+  .btn--secondary {
+    background-color: var(--clr-accent);
+    color: var(--clr-dark);
+    outline: 1px solid var(--clr-accent-2);
+
+    &:hover {
+      background-color: var(--clr-accent-2);
+      color: var(--clr-light);
+    }
+  }
 </style>

@@ -1,0 +1,100 @@
+---
+import { Image } from "astro:assets";
+import archery from "../assets/archery.png";
+import jamchat from "../assets/jamchat.png";
+const projects = [
+  {
+    title: "CSS Archer - CSS Only Game",
+    img: archery,
+    href: "https://codepen.io/ramseyediku/full/NPWePMY",
+  },
+  {
+    title: "Jamchat - Social Media App",
+    img: jamchat,
+    href: "https://jamchat.online/",
+  },
+];
+---
+
+<section class="projects" id="projects">
+  <div class="projects__header">
+    <h2 class="titles">Projects</h2>
+    <p>
+      A curated set of imagined projects that demonstrate modern web development patterns, interface
+      design, and performance-first experiences.
+    </p>
+  </div>
+
+  <div class="projects__grid">
+    {
+      projects.map((project) => (
+        <article class="project__card">
+          <a href={project.href} target="_blank" rel="noopener noreferrer">
+            <Image src={project.img} alt={project.title} />
+            <h2>{project.title}</h2>
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .projects {
+    margin-top: var(--space-12);
+
+    .projects__header {
+      margin-bottom: var(--space-8);
+    }
+
+    .projects__grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+      .project__card {
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        border-radius: 1rem;
+        background: var(--clr-accent-2);
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+        transition:
+          transform 0.2s ease,
+          border-color 0.2s ease;
+
+        img {
+          object-fit: cover;
+          border-radius: calc(var(--border-radius) * 0.5);
+
+          width: 100%;
+          max-height: 300px;
+          aspect-ratio: 1/1;
+          box-shadow:
+            rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+            rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+
+        a {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          padding: var(--space-4);
+          text-decoration: none;
+          color: inherit;
+        }
+
+        h2 {
+          margin-top: var(--space-4);
+          font-size: 1.35rem;
+          line-height: 1.25;
+          color: var(--clr-light);
+        }
+
+        &:hover,
+        &:focus-within {
+          transform: translateY(-4px);
+          border-color: rgba(59, 130, 246, 0.25);
+        }
+      }
+    }
+  }
+</style>
