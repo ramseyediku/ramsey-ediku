@@ -1,8 +1,5 @@
 ---
 const { title } = Astro.props
-import '@fontsource/rammetto-one';
-// Supports weights 100-900
-import '@fontsource-variable/roboto-slab';
 ---
 <html lang="en">
 	<head>
@@ -18,120 +15,131 @@ import '@fontsource-variable/roboto-slab';
 
 
 <style is:global >
-	/* global css reset */
-	:root {
-		--body-line-height: 1.5;
-		--heading-line-height: 1.25;
-	}
+/* font family */
+@font-face {
+	font-family: 'wotfardregular';
+	src: url('../fonts/wotfard-regular-webfont.eot');
+	src: url('../fonts/wotfard-regular-webfont.woff2') format('woff2'),
+			url('../fonts/wotfard-regular-webfont.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+:root {
+    --body-font-family: 'wotfardregular';
+    --heading-font-family: 'wotfardregular';
 
-	/* applying box-sizing of border-box */
-	*,*::before, *::after {
-		box-sizing: border-box;
-	}
+    --body-line-height: 1.5;
+    --heading-line-height: 1.1;
+}
 
-	html, html:focus-within {
-		/* add smooth scroll to the page */
-		scroll-behavior: smooth;
-		hanging-punctuation: first last;
+/* applying box-sizing of border-box */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-		/* new feature that allows transition/animations using keywords like auto,cover,none,fit-content etc.. */
-		interpolate-size: allow-keywords;
+html, html:focus-within {
+  /* add smooth scroll to the page */
+  scroll-behavior: smooth;
+  hanging-punctuation: first last;
 
-		/* Prevent font size inflation on iOS */
-		-moz-text-size-adjust: none;
-		-webkit-text-size-adjust: none;
-		text-size-adjust: none;
-	}
+  /* new feature that allows transition/animations using keywords like auto,cover,none,fit-content etc.. */
+  interpolate-size: allow-keywords;
 
-	body {
-		margin: 0;
-		min-height: 100vh;
-		line-height: var(--body-line-height);
-  		font-family: 'Roboto Slab Variable', serif;
+  /* Prevent font size inflation on iOS */
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
 
-		/* text renders faster on a webpage, switch this to 'optimizeLegibility' for nicer looking text at the detriment of rendering times */
-		text-rendering: optimizeSpeed;
-		-webkit-font-smoothing: antialiased;
-	}
+body {
+  margin: 0;
+  min-height: 100vh;
+  line-height: var(--body-line-height);
+  font-family: var(--body-font-family);
 
-	/* makes titles and headings wrap in a readable way */
-	:where(h1, h2, h3, h4) {
-		text-wrap: balance;
-		line-height: var(--heading-line-height);
-		font-family: 'Rammetto One', system-ui;
-		font-size: 3rem;
-	}
+  /* text renders faster on a webpage, switch this to 'optimizeLegibility' for nicer looking text at the detriment of rendering times */
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
 
-	/* makes paragraphs wrap in a readable way, and prevents paragraphs being too long */
-	:where(p, li, figcaption) {
-		text-wrap: pretty;
-		max-width: 75ch;
-	}
+/* makes titles and headings wrap in a readable way */
+:where(h1, h2, h3, h4) {
+  text-wrap: balance;
+  line-height: var(--heading-line-height);
+  font-family: var(--heading-font-family);
+}
 
-	/* make text brake at words instead of letters at new lines */
-	:where(p, h1, h2, h3, h4, h5, h6) {
-		overflow-wrap: break-word;
-	}
+/* makes paragraphs wrap in a readable way, and prevents paragraphs being too long */
+:where(p,li,figcaption) {
+  text-wrap: pretty;
+  max-width: 75ch;
+}
 
-	/* remove bottom border from these elements to prevent double margins and have better control over flow of the page */
-	:where(h1, h2, h3, h4, p, figure, blockquote, dl, dd) {
-		margin-block-end: 0;
-	}
+/* make text brake at words instead of letters at new lines */
+:where(p, h1, h2, h3, h4, h5, h6) {
+  overflow-wrap: break-word;
+}
 
-	/* removing default styling from lists with classes */
-	:where(ul, ol):where([class]) {
-		list-style: "";
-	}
+/* remove bottom border from these elements to prevent double margins and have better control over flow of the page */
+:where(h1,h2,h3,h4,p,figure,blockquote,dl,dd) {
+  margin-block-end: 0;
+}
 
-	/* make media elements block-level */
-	:where(img, svg, video, canvas, audio) {
-		display: block;
-		max-width: 100%;
-	}
+/* removing default styling from lists with classes */
+:where(ul,ol):where([class]) {
+  list-style: '';
+}
 
-	/* make font elements inherit font styles (they do not by default) */
-	:where(input, button, textarea, select) {
-		font-family: inherit;
-		font-size: inherit;
-	}
+/* make media elements block-level */
+:where(img, svg, video, canvas, audio) {
+  display: block;
+  max-width: 100%;
+}
 
-	/* give all non disabled buttons a pointer cursor */
-	:where(input[type="submit"], button):not(:disabled) {
-		cursor: pointer;
-	}
+/* make font elements inherit font styles (they do not by default) */
+:where(input,button,textarea,select) {
+  font-family: inherit;
+  font-size: inherit;
+}
 
-	/* removing default link styling from anchor tags with classes */
-	a {
-		text-decoration: none;
-		&:not([class]) {
-			text-decoration-skip-ink: auto;
-		}
-	}
+/* give all non disabled buttons a pointer cursor */
+:where(input[type="submit"], button):not(:disabled) {
+  cursor: pointer;
+}
 
-	/* give some height to textareas with no rows */
-	textarea:not([rows]) {
-		min-height: 10rem;
-	}
+/* removing default link styling from anchor tags with classes */
+a {
+  text-decoration: none;
 
-	/* lines up string numbers of the same lenght to take the same space */
-	td,math,time[datetime*=":"] {
-		font-variant-numeric: tabular-nums;
-	}
+  &:not([class]) {
+    text-decoration-skip-ink: auto;
+  }
+}
 
-	/* add some marging to anchored elements */
-	:target {
-		scroll-margin-block: 2em;
-	}
+/* give some height to textareas with no rows */
+textarea:not([rows]) {
+  min-height: 10rem;
+}
+ 
+/* lines up string numbers of the same lenght to take the same space */
+td, math, time[datetime*=":"] {
+  font-variant-numeric: tabular-nums;
+}
 
-	/* Remove all animations and transitions for users who disable them */
-	@media (prefers-reduced-motion: reduce) {
-		*,*::before,*::after,*:focus-within {
-			animation-duration: 0.01ms !important;
-			animation-iteration-count: 1 !important;
-			transition-duration: 0.01ms !important;
-			scroll-behavior: auto !important;
-		}
-	}
+/* add some marging to anchored elements */
+:target {
+  scroll-margin-block: 5ex;
+}
 
+/* Remove all animations and transitions for users who disable them */
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after, *:focus-within {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+  
 
 </style>

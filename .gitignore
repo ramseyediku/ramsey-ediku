@@ -21,3 +21,4 @@ pnpm-debug.log*
 
 # local vscode files
 vscode/
+.prettierrc

@@ -1,70 +1,13 @@
 ---
 import { Image } from 'astro:assets';
-const jobs = Object.values(import.meta.glob('../markdown/*.md', { eager: true }));
-console.log("hello")
-if (jobs) {
-    console.log("jobs")
-}
+
 ---
 
 <section class={"experience"} id="experience">
-    <h2>Experience</h2>
-
-    {jobs.map(item => 
-        <div class={"experience__item"}>
-            <Image src={import(item.frontmatter.logo)} alt=""></Image>
-            <div>
-                <h3 class={"experience__item__title"}>{item.frontmatter.title}</h3>
-                <p>{item.rawContent()}</p>
-            </div>
-        </div>
-    )}
 
     
 </section>
 
 <style>
-    .experience {
-        margin-bottom: 4.5em;
-        .experience__item {
-            display: flex;
-            gap: 1em;
-            margin-block: 3em;
 
-            .experience__item__title {
-                font-size: .9rem;
-                margin-top: 0;
-                width: max-content;
-                position: relative;
-                &::before {
-                    content: '';
-                    position: absolute;
-                    inset: 0;
-                    top: 105%;
-                    height: 4px;
-                    width: 0%;
-                    border-radius: var(--border-radius);
-                    background-color: var(--clr-accent);
-
-                    transition: width 250ms ease-in;
-                }
-            }
-            img {
-                --img-dimension: 5em;
-                align-self: flex-start;
-                width: var(--img-dimension);
-                height: var(--img-dimension);
-                border-radius: 50%;
-            }
-
-            &:hover {   
-                cursor: pointer;
-                .experience__item__title::before {
-                    width: 30%;
-                }
-            }
-        }
-
-       
-    }
 </style>
