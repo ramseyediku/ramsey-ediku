@@ -1,167 +1,205 @@
 ---
 const { title } = Astro.props;
+// Supports weights 100-900
+import "@fontsource-variable/inter/wght.css";
+import "@fontsource/rammetto-one";
+import "../styles/reset.css";
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
     <title>{title}</title>
   </head>
-  <body>
+  <body data-barba="wrapper">
     <slot />
   </body>
 </html>
 
+<script>
+  import barba from "@barba/core";
+  import { gsap } from "gsap";
+
+  barba.init({
+    transitions: [
+      {
+        name: "opacity-transition",
+        leave(data: any) {
+          return gsap.to(data.current.container, {
+            opacity: 0,
+          });
+        },
+        enter(data: any) {
+          return gsap.from(data.next.container, {
+            opacity: 0,
+          });
+        },
+      },
+    ],
+  });
+</script>
+
 <style is:global>
-  /* font family */
-  @font-face {
-    font-family: "wotfardregular";
-    src: url("../fonts/wotfard-regular-webfont.eot");
-    src:
-      url("../fonts/wotfard-regular-webfont.woff2") format("woff2"),
-      url("../fonts/wotfard-regular-webfont.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  /* inter-latin-wght-normal */
-  @font-face {
-    font-family: "Inter Variable";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 100 900;
-    src: url(https://cdn.jsdelivr.net/fontsource/fonts/inter:vf@5.3.0/latin-wght-normal.woff2)
-      format(woff2) tech(variations);
-    unicode-range:
-      U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
-      U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
+  /* Global styles */
   :root {
-    /* --body-font-family: 'wotfardregular';
-    --heading-font-family: 'wotfardregular'; */
-    --body-font-family: "wotfardregular";
-    --heading-font-family: "Inter Variable", sans-serif;
+    /* colors */
+    --clr-brand: hsl(30, 28%, 18%);
+    --clr-brand-secondary: hsl(35, 50%, 73%);
+    --clr-brand-bg: hsl(36, 100%, 96%);
 
-    --body-line-height: 1.525;
-    --heading-line-height: 1.1;
+    --clr-light: hsl(34, 100%, 99%);
+
+    --clr-dark: hsl(0, 0%, 8%);
+    --clr-grey: hsl(218, 11%, 65%);
+
+    /* spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-7: 1.75rem;
+    --space-8: 2rem;
+    --space-9: 2.25rem;
+    --space-10: 2.5rem;
+    --space-11: 2.75rem;
+    --space-12: 3rem;
+
+    --border-radius: 1rem;
+
+    --box-shadow:
+      rgb(from var(--clr-brand) r g b / 0.25) 0px 3px 12px -2px,
+      rgb(from var(--clr-brand) r g b / 0.3) 0px 1px 7px -3px;
   }
 
-  /* applying box-sizing of border-box */
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  html,
-  html:focus-within {
-    /* add smooth scroll to the page */
-    scroll-behavior: smooth;
-    hanging-punctuation: first last;
-
-    /* new feature that allows transition/animations using keywords like auto,cover,none,fit-content etc.. */
-    interpolate-size: allow-keywords;
-
-    /* Prevent font size inflation on iOS */
-    -moz-text-size-adjust: none;
-    -webkit-text-size-adjust: none;
-    text-size-adjust: none;
+  .container {
+    width: min(calc(97.5% - var(--space-8)), 1200px);
+    margin-inline: auto;
+    padding-inline: var(--space-4);
   }
 
   body {
-    margin: 0;
-    min-height: 100vh;
-    line-height: var(--body-line-height);
-    font-family: var(--body-font-family);
+    background-color: var(--clr-brand-bg);
+    color: var(--clr-dark);
+    font-size: 1.155rem;
 
-    /* text renders faster on a webpage, switch this to 'optimizeLegibility' for nicer looking text at the detriment of rendering times */
-    text-rendering: optimizeSpeed;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* makes titles and headings wrap in a readable way */
-  :where(h1, h2, h3, h4) {
-    text-wrap: balance;
-    line-height: var(--heading-line-height);
-    font-family: var(--heading-font-family);
-  }
-
-  /* makes paragraphs wrap in a readable way, and prevents paragraphs being too long */
-  :where(p, li, figcaption) {
-    text-wrap: pretty;
-    max-width: 75ch;
-  }
-
-  /* make text brake at words instead of letters at new lines */
-  :where(p, h1, h2, h3, h4, h5, h6) {
-    overflow-wrap: break-word;
-  }
-
-  /* remove bottom border from these elements to prevent double margins and have better control over flow of the page */
-  :where(h1, h2, h3, h4, p, figure, blockquote, dl, dd) {
-    margin-block-end: 0;
-  }
-
-  /* removing default styling from lists with classes */
-  :where(ul, ol):where([class]) {
-    list-style: "";
-  }
-
-  /* make media elements block-level */
-  :where(img, svg, video, canvas, audio) {
-    display: block;
-    max-width: 100%;
-  }
-
-  /* make font elements inherit font styles (they do not by default) */
-  :where(input, button, textarea, select) {
-    font-family: inherit;
-    font-size: inherit;
-  }
-
-  /* give all non disabled buttons a pointer cursor */
-  :where(input[type="submit"], button):not(:disabled) {
-    cursor: pointer;
-  }
-
-  /* removing default link styling from anchor tags with classes */
-  a {
-    text-decoration: none;
-
-    &:not([class]) {
-      text-decoration-skip-ink: auto;
+    &::selection {
+      background-color: var(--clr-brand-secondary);
     }
   }
 
-  /* give some height to textareas with no rows */
-  textarea:not([rows]) {
-    min-height: 10rem;
+  .titles {
+    margin: 0;
+    letter-spacing: -0.0185em;
+    font-weight: 800;
+    color: var(--clr-brand);
   }
 
-  /* lines up string numbers of the same lenght to take the same space */
-  td,
-  math,
-  time[datetime*=":"] {
-    font-variant-numeric: tabular-nums;
+  .highlight {
+    background-color: var(--clr-brand-secondary);
+    border-radius: calc(var(--border-radius) / 2);
+    padding: 0.1rem var(--space-1);
   }
 
-  /* add some marging to anchored elements */
-  :target {
-    scroll-margin-block: 5ex;
+  h2 {
+    font-size: 3.75rem;
+    font-weight: 800;
   }
 
-  /* Remove all animations and transitions for users who disable them */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after,
-    *:focus-within {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
+  hr {
+    background-color: rgb(from var(--clr-brand-secondary) r g b / 0.5);
+    width: var(--space-12);
+    height: 7.5px;
+    aspect-ratio: 2/1;
+    border: 0;
+    margin: 0 auto;
+    border-radius: calc(var(--border-radius) / 3);
+  }
+
+  .btn {
+    font-family: "Inter Variable", sans-serif;
+    display: inline-block;
+    border: 0;
+    padding: var(--space-3) var(--space-7);
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+    text-decoration: none;
+    transition: background-color 300ms ease-in-out;
+    background-color: var(--clr-brand);
+    border-radius: calc(var(--border-radius) / 2);
+    box-shadow: var(--box-shadow);
+
+    &:hover {
+      background-color: var(--clr-brand);
+    }
+  }
+
+  .btn--secondary {
+    background-color: var(--clr-brand);
+    color: var(--clr-dark);
+    outline: 1px solid var(--clr-brand);
+
+    &:hover {
+      background-color: var(--clr-brand);
+      color: var(--clr-light);
+    }
+  }
+
+  .link-pop {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: calc(var(--border-radius) * 0.8);
+      background-color: var(--clr-brand-secondary);
+      scale: 0;
+      index: -1;
+      transition: scale 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    &:hover,
+    &:focus-within {
+      &::before {
+        background-color: var(--clr-brand-secondary);
+        scale: 1.25;
+        transition: scale 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+    }
+  }
+
+  .link-pop-inverse {
+    &:hover,
+    &:focus-within {
+      img {
+        filter: invert(80%) sepia(9%) saturate(1270%) hue-rotate(348deg) brightness(107%)
+          contrast(73%);
+      }
+    }
+
+    &::before,
+    &:hover::before,
+    &:focus-within::before {
+      background-color: var(--clr-brand);
+    }
+
+    &:hover::before,
+    &:focus-within::before {
+      scale: 1.4;
+    }
+  }
+
+  .project-page {
+    border: solid 1px red;
+    margin-top: var(--space-9);
+
+    h1 {
+      font-size: 3em;
     }
   }
 </style>

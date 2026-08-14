@@ -1,34 +1,105 @@
+---
+import linkedin from "../assets/linkedin.svg";
+import github from "../assets/github.svg";
+import { Image } from "astro:assets";
+---
+
 <header class={"header"}>
   <nav>
-    <a class={"header__name"} href="/">Ramsey Ediku</a>
+    <a class={"header__name"} href="/"> Ramsey Ediku </a>
     <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li>
+        <a
+          class={"link-pop"}
+          href="https://www.linkedin.com/in/ramseyediku/"
+          target="_blank"
+          rel="noopener noreferrer"><Image src={linkedin} alt="LinkedIn" /></a
+        >
+      </li>
+
+      <li>
+        <a
+          class={"link-pop"}
+          href="https://github.com/ramseyediku"
+          target="_blank"
+          rel="noopener noreferrer"><Image src={github} alt="GitHub" /></a
+        >
+      </li>
     </ul>
   </nav>
 </header>
 
-<style>
+<script>
+  const header = document.querySelector("header");
+  const nav = document.querySelector("header > nav");
+
+  window.addEventListener("scroll", () => {
+    const topNavPosition = header.getBoundingClientRect().top + window.scrollY;
+    topNavPosition > 85 ? nav?.classList.add("nav-sticky") : nav?.classList.remove("nav-sticky");
+    topNavPosition > 115 ? nav?.classList.add("nav-outline") : nav?.classList.remove("nav-outline");
+  });
+</script>
+
+<style is:global>
   .header {
+    position: sticky;
+    top: 0;
     width: 100%;
+    padding: var(--space-4) 0 var(--space-10);
 
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: var(--space-4) 0;
 
+      border-radius: calc(var(--border-radius) * 1.05);
+      background-color: var(--clr-brand-bg);
+      outline: solid 4px var(--clr-brand-bg);
+      transition:
+        box-shadow 350ms ease-in-out,
+        outline-color 250ms ease-in;
+      /* box-shadow: var(--box-shadow); */
+      z-index: 5;
       .header__name {
         text-transform: uppercase;
+        font-weight: 500;
+        color: var(--clr-brand);
+        letter-spacing: 0.085em;
+        margin-left: var(--space-4);
       }
 
       ul {
         display: flex;
         list-style: none;
         padding: 0;
-        gap: var(--space-4);
+        margin: 0.95rem var(--space-4);
+        gap: var(--space-7);
+
+        a {
+          border-radius: var(--border-radius);
+          padding: 0.1rem;
+          transition: background-color 350ms ease-in-out;
+          display: grid;
+          place-content: center;
+        }
+
+        img {
+          --img-dimension: 2.15rem;
+          width: var(--img-dimension);
+          height: var(--img-dimension);
+          filter: invert(13%) sepia(21%) saturate(319%) hue-rotate(349deg) brightness(92%)
+            contrast(87%);
+        }
       }
+    }
+
+    .nav-sticky {
+      box-shadow: var(--box-shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-outline {
+      outline-color: rgb(from var(--clr-brand-secondary) r g b / 0.5);
     }
   }
 </style>

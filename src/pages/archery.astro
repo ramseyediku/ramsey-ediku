@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import archeryDemo from "../assets/archery-demo.mp4";
+import archeryThumb from "../assets/archery-thumbnail.png";
+---
+
+<BaseLayout title="Ramsey Ediku">
+  <div class="container">
+    <main class={"project-page"} data-barba="container" data-barba-namespace="archery">
+      <article>
+        <div class="project-grid">
+          <div class="project-info">
+            <header>
+              <h1 class="titles">Archery Game</h1>
+              <p class="lead">css only web game</p>
+            </header>
+
+            <section class="project-links">
+              <ul>
+                <li>
+                  <a
+                    href="https://codepen.io/ramseyediku/full/NPWePMY"
+                    target="_blank"
+                    rel="noopener">Live demo</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/ramseyediku/css-archery-games"
+                    target="_blank"
+                    rel="noopener">GitHub</a
+                  >
+                </li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="project-media">
+            <video class="project-video" controls preload="metadata" poster={archeryThumb}>
+              <source src={archeryDemo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </article>
+      <style>
+        .project-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+          align-items: center;
+        }
+
+        .project-video {
+          width: 100%;
+          border-radius: 8px;
+          max-height: 420px;
+          object-fit: cover;
+          box-shadow: var(--box-shadow);
+        }
+
+        @media (max-width: 720px) {
+          .project-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      </style>
+    </main>
+  </div>
+</BaseLayout>

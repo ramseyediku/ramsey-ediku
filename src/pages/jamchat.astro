@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import jamDemo from "../assets/jam-chat-demo.mp4";
+import jamThumb from "../assets/jamchat-thumbnail.png";
+---
+
+<BaseLayout title="Ramsey Ediku">
+  <div class="container">
+    <main class={"project-page"} data-barba="container" data-barba-namespace="jamchat">
+      <article class="project">
+        <div class="project-grid">
+          <div class="project-info">
+            <header>
+              <h1 class="titles">Jam Chat</h1>
+              <p class="lead">social media web app</p>
+            </header>
+
+            <section class="project-links">
+              <ul>
+                <li>
+                  <a href="https://jamchat.online/" target="_blank" rel="noopener">Live site</a>
+                </li>
+                <li>GitHub: <em>Not available</em></li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="project-media">
+            <video class="project-video" controls preload="metadata" poster={jamThumb}>
+              <source src={jamDemo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </article>
+      <style>
+        .project-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+          align-items: center;
+        }
+
+        .project-video {
+          width: 100%;
+          border-radius: 8px;
+          max-height: 420px;
+          object-fit: cover;
+          box-shadow: var(--box-shadow);
+        }
+
+        @media (max-width: 720px) {
+          .project-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      </style>
+    </main>
+  </div>
+</BaseLayout>
