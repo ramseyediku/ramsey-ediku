@@ -12,6 +12,7 @@ import "../styles/reset.css";
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="stylesheet" href="nprogress.css" />
     <title>{title}</title>
   </head>
   <body data-barba="wrapper">
@@ -20,26 +21,62 @@ import "../styles/reset.css";
 </html>
 
 <script>
-  import barba from "@barba/core";
   import { gsap } from "gsap";
 
-  // barba.init({
-  //   transitions: [
-  //     {
-  //       name: "opacity-transition",
-  //       leave(data: any) {
-  //         return gsap.to(data.current.container, {
-  //           opacity: 0,
-  //         });
-  //       },
-  //       enter(data: any) {
-  //         return gsap.from(data.next.container, {
-  //           opacity: 0,
-  //         });
-  //       },
-  //     },
-  //   ],
-  // });
+  document.addEventListener("DOMContentLoaded", () => {
+    const tl = gsap.timeline({ defaults: { ease: "none" } });
+
+    // 1) h1, h2: masked reveal from below
+    tl.from("h1, h2", {
+      duration: 1,
+      clipPath: "inset(100% 0 0 0)",
+      ease: "power3.out",
+    });
+
+    // 2) h3, h4, h5: same reveal, starting as h1/h2 finish
+    tl.from(
+      "h3, h4, h5",
+      {
+        duration: 1,
+        clipPath: "inset(100% 0 0 0)",
+        ease: "power3.out",
+      },
+      "<+0.2",
+    );
+
+    // 3) p: fade in
+    tl.from(
+      "p",
+      {
+        duration: 0.5,
+        opacity: 0,
+        ease: "power2.out",
+      },
+      "<+0.5", // slightly smaller gap
+    );
+
+    // 4) Pop animations: .btn, .link-pop, .highlight, .hero_image
+    tl.from(
+      ".btn, .link-pop, .highlight, .resume__side a img, .resume__side a span, .resume__education img",
+      {
+        duration: 0.5,
+        scale: 0,
+        ease: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      },
+      "+=0.08",
+    );
+
+    // Settle pop elements back to scale 1
+    tl.to(
+      ".btn, .link-pop, .highlight",
+      {
+        duration: 0.35,
+        scale: 1,
+        ease: "power2.out",
+      },
+      "-=0.12",
+    );
+  });
 </script>
 
 <style is:global>
@@ -113,6 +150,13 @@ import "../styles/reset.css";
     font-size: var(--space-8);
   }
 
+  h1,
+  h2,
+  h3,
+  h4 {
+    overflow: hidden;
+  }
+
   .highlight {
     background-color: var(--clr-brand-secondary);
     border-radius: calc(var(--border-radius) / 2);
@@ -141,11 +185,30 @@ import "../styles/reset.css";
     text-decoration: none;
     transition: background-color 300ms ease-in-out;
     background-color: var(--clr-brand);
-    border-radius: calc(var(--border-radius) / 2);
+    border-radius: calc(var(--border-radius) / 1.5);
     box-shadow: var(--box-shadow);
+    isolation: isolate;
+    position: relative;
 
-    &:hover {
+    &::before {
+      content: "";
+      inset: 0;
+      z-index: -1;
+      position: absolute;
+      background-color: var(--clr-brand-secondary);
+      border-radius: calc(var(--border-radius) / 1.5);
+      scale: 0;
+      transition: scale 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    &:hover,
+    &:focus {
       background-color: var(--clr-brand);
+
+      &::before {
+        transition: scale 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        scale: 1.05;
+      }
     }
   }
 
@@ -163,7 +226,7 @@ import "../styles/reset.css";
   .link-pop {
     position: relative;
     isolation: isolate;
-    z-index: 2;
+    /* z-index: 2; */
     &::before {
       content: "";
       position: absolute;

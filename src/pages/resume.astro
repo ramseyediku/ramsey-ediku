@@ -38,7 +38,6 @@ import sqlIcon from "../assets/sql.svg";
           <ul class="resume__skills">
             <li>
               <a
-                class="link-pop"
                 href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
                 target="_blank"
                 rel="noopener"
@@ -49,7 +48,6 @@ import sqlIcon from "../assets/sql.svg";
             </li>
             <li>
               <a
-                class="link-pop"
                 href="https://developer.mozilla.org/en-US/docs/Glossary/TypeScript"
                 target="_blank"
                 rel="noopener"
@@ -59,14 +57,13 @@ import sqlIcon from "../assets/sql.svg";
               </a>
             </li>
             <li>
-              <a class="link-pop" href="https://reactjs.org/" target="_blank" rel="noopener">
+              <a href="https://reactjs.org/" target="_blank" rel="noopener">
                 <Image src={reactIcon} alt="React" class="skill-icon" />
                 <span>React</span>
               </a>
             </li>
             <li>
               <a
-                class="link-pop"
                 href="https://developer.mozilla.org/en-US/docs/Web/HTML"
                 target="_blank"
                 rel="noopener"
@@ -77,7 +74,6 @@ import sqlIcon from "../assets/sql.svg";
             </li>
             <li>
               <a
-                class="link-pop"
                 href="https://developer.mozilla.org/en-US/docs/Web/CSS"
                 target="_blank"
                 rel="noopener"
@@ -87,7 +83,7 @@ import sqlIcon from "../assets/sql.svg";
               </a>
             </li>
             <li>
-              <a class="link-pop" href="https://bun.sh/" target="_blank" rel="noopener">
+              <a href="https://bun.sh/" target="_blank" rel="noopener">
                 <Image src={bunIcon} alt="Bun" class="skill-icon" />
                 <span>Bun</span>
               </a>
@@ -95,7 +91,6 @@ import sqlIcon from "../assets/sql.svg";
 
             <li>
               <a
-                class="link-pop"
                 href="https://developer.mozilla.org/en-US/docs/Glossary/SQL"
                 target="_blank"
                 rel="noopener"
@@ -109,19 +104,19 @@ import sqlIcon from "../assets/sql.svg";
           <h4>Tools</h4>
           <ul>
             <li>
-              <a class="link-pop" href="https://git-scm.com/" target="_blank" rel="noopener">
+              <a href="https://git-scm.com/" target="_blank" rel="noopener">
                 <Image src={gitIcon} alt="Git" class="skill-icon" />
                 <span>Git</span>
               </a>
             </li>
             <li>
-              <a class="link-pop" href="https://git-scm.com/" target="_blank" rel="noopener">
+              <a href="https://git-scm.com/" target="_blank" rel="noopener">
                 <Image src={githubIcon} alt="Git" class="skill-icon" />
                 <span>Github</span>
               </a>
             </li>
             <li>
-              <a class="link-pop" href="https://www.npmjs.com/" target="_blank" rel="noopener">
+              <a href="https://www.npmjs.com/" target="_blank" rel="noopener">
                 <Image src={npmIcon} alt="NPM" class="skill-icon" />
                 <span>NPM</span>
               </a>
@@ -145,19 +140,18 @@ import sqlIcon from "../assets/sql.svg";
             <h5>Pulse Streaming LTD</h5>
             <p class="resume__muted">03/2026 · Present</p>
             <p>
-              I built the web version of an existing Android social app (≈3,000 users), adding
-              accounts, follow/unfollow, posts/short videos, and live audio rooms for contests.
+              I built the web version of an existing Android social app (≈3000 users), user
+              accounts, follow/unfollow, posts, short videos, and live audio rooms.
             </p>
             <p>
-              I designed and deployed the backend API on a DigitalOcean droplet. The React frontend
-              is hosted on GoDaddy, with MongoDB for data storage. I also implemented a virtual
-              economy where users buy gifts with diamonds (real money), creators earn gifts, convert
-              them to RCoins, and cash out via payouts.
+              I implemented and deployed the backend API on DigitalOcean, and deployed the bundled
+              React frontend on GoDaddy, with a MongoDB being used for data storage. I also
+              implemented the virtual economy where users buy gifts with diamonds (real money),
+              creators earn gifts, convert them to RCoins, and cash out via payouts.
             </p>
             <p>
-              Working alongside a 4–5 person Android team, I delivered feature parity as the sole
-              web developer, owning the full stack from database and API design through to UI and
-              deployment.
+              Working alongside a 4–5 person Android team, where I was the sole web developer,
+              owning the web full stack from database and API design through to UI and deployment.
             </p>
           </article>
 
@@ -266,14 +260,38 @@ import sqlIcon from "../assets/sql.svg";
               display: flex;
               align-items: center;
               width: 80%;
+              padding: var(--space-1) var(--space-2);
 
               gap: var(--space-2);
               color: var(--clr-brand);
+              position: relative;
+              isolation: isolate;
+
+              &::before {
+                content: "";
+                position: absolute;
+                background-color: var(--clr-brand-secondary);
+                inset: 0;
+                border-radius: calc(var(--border-radius) / 1.5);
+                z-index: -1;
+                scale: 0;
+                transition: scale 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+              }
 
               img {
                 --dimension: 2.25rem;
                 width: var(--dimension);
                 height: var(--dimension);
+              }
+
+              &:hover,
+              &:focus {
+                font-weight: 700;
+
+                &::before {
+                  scale: 1;
+                  transition: scale 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+                }
               }
             }
 
@@ -300,6 +318,7 @@ import sqlIcon from "../assets/sql.svg";
           p {
             width: 100%;
             margin: 0;
+            text-align: center;
           }
         }
 
@@ -308,7 +327,20 @@ import sqlIcon from "../assets/sql.svg";
         }
 
         .resume__role {
-          margin-bottom: var(--space-12);
+          margin-bottom: 3.75rem;
+          transition: scale 150ms ease-out;
+          &:hover,
+          &:focus {
+            cursor: pointer;
+            scale: 1.01;
+            margin-bottom: 3.75rem;
+
+            h4 {
+              text-decoration: underline;
+            }
+            p {
+            }
+          }
 
           & > p {
             margin-top: var(--space-1);
