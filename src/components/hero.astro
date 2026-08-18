@@ -8,12 +8,13 @@ import HeroImage from "../assets/ramsey-portrait.jpg";
   <div class={"hero__content"}>
     <h1 class={"titles"}>Hey, I’m Ramsey</h1>
     <p>
-      I’m an early-career software developer with a strong interest in frontend development. I build
-      <span class="highlight">full-stack websites</span> across frontend and backend, with a focus on
-      useful, thoughtful experiences.
+      I am a software engineer, building full-stack
+      <span class="highlight"> websites and web apps</span>. I focus on clean UIs, solid
+      architecture, and products that feel good to use.
     </p>
     <div class="hero__buttons">
-      <a class={"btn"} href="#projects">View My Work</a>
+      <a class={"btn"} href="#projects">View My Projects</a>
+      <!-- <a class={"btn btn--secondary"} href="#contact">Get in touch</a> -->
     </div>
   </div>
   <div class={"hero__image"}>
@@ -33,9 +34,7 @@ import HeroImage from "../assets/ramsey-portrait.jpg";
       flex-direction: column;
       justify-content: space-between;
       margin-right: var(--space-4);
-      h1 {
-        font-size: 3.75rem;
-      }
+      /* heading sizing moved to BaseLayout utility classes (use class="titles") */
 
       p {
         font-weight: 300;

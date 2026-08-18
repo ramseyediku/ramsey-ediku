@@ -100,7 +100,8 @@ time[datetime*=":"] {
 }
 
 :target {
-  scroll-margin-block: 5ex;
+  scroll-margin-block: 25ex;
+  /* change based on project */
 }
 
 @media (prefers-reduced-motion: reduce) {

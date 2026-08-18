@@ -1,0 +1,330 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import { Image } from "astro:assets";
+import htmlIcon from "../assets/html.svg";
+import cssIcon from "../assets/css.svg";
+import jsIcon from "../assets/js.svg";
+import tsIcon from "../assets/typescript.svg";
+import reactIcon from "../assets/react.svg";
+import bunIcon from "../assets/bun.svg";
+import gitIcon from "../assets/git.svg";
+import githubIcon from "../assets/github.svg";
+import npmIcon from "../assets/npm.svg";
+import uniIcon from "../assets/uni.svg";
+import sqlIcon from "../assets/sql.svg";
+---
+
+<BaseLayout title="Resume - Ramsey Ediku">
+  <div class="container">
+    <Header />
+
+    <main class="resume" data-barba="container" data-barba-namespace="resume">
+      <section class="resume__header">
+        <h1 class="titles">Resume</h1>
+        <p>
+          Here is my resume detailing my work educations, skills and experiences. <br />Find the
+          downloadable version <a href="../files/Resume.pdf" download="Ramsey-Ediku-Resume.pdf"
+            >here</a
+          >.
+        </p>
+      </section>
+
+      <section class="resume__grid">
+        <aside class="resume__side">
+          <h2 class="titles">Skills</h2>
+          <h4>Languages</h4>
+          <ul class="resume__skills">
+            <li>
+              <a
+                class="link-pop"
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+                target="_blank"
+                rel="noopener"
+              >
+                <Image src={jsIcon} alt="JavaScript" class="skill-icon" />
+                <span>JavaScript</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="link-pop"
+                href="https://developer.mozilla.org/en-US/docs/Glossary/TypeScript"
+                target="_blank"
+                rel="noopener"
+              >
+                <Image src={tsIcon} alt="TypeScript" class="skill-icon" />
+                <span>TypeScript</span>
+              </a>
+            </li>
+            <li>
+              <a class="link-pop" href="https://reactjs.org/" target="_blank" rel="noopener">
+                <Image src={reactIcon} alt="React" class="skill-icon" />
+                <span>React</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="link-pop"
+                href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+                target="_blank"
+                rel="noopener"
+              >
+                <Image src={htmlIcon} alt="HTML" class="skill-icon" />
+                <span>HTML</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="link-pop"
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+                target="_blank"
+                rel="noopener"
+              >
+                <Image src={cssIcon} alt="CSS" class="skill-icon" />
+                <span>CSS</span>
+              </a>
+            </li>
+            <li>
+              <a class="link-pop" href="https://bun.sh/" target="_blank" rel="noopener">
+                <Image src={bunIcon} alt="Bun" class="skill-icon" />
+                <span>Bun</span>
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="link-pop"
+                href="https://developer.mozilla.org/en-US/docs/Glossary/SQL"
+                target="_blank"
+                rel="noopener"
+              >
+                <Image src={sqlIcon} alt="SQL" class="skill-icon" />
+                <span>SQL</span>
+              </a>
+            </li>
+          </ul>
+
+          <h4>Tools</h4>
+          <ul>
+            <li>
+              <a class="link-pop" href="https://git-scm.com/" target="_blank" rel="noopener">
+                <Image src={gitIcon} alt="Git" class="skill-icon" />
+                <span>Git</span>
+              </a>
+            </li>
+            <li>
+              <a class="link-pop" href="https://git-scm.com/" target="_blank" rel="noopener">
+                <Image src={githubIcon} alt="Git" class="skill-icon" />
+                <span>Github</span>
+              </a>
+            </li>
+            <li>
+              <a class="link-pop" href="https://www.npmjs.com/" target="_blank" rel="noopener">
+                <Image src={npmIcon} alt="NPM" class="skill-icon" />
+                <span>NPM</span>
+              </a>
+            </li>
+          </ul>
+
+          <h2 class="resume__titles">School</h2>
+          <section class="resume__education">
+            <div>
+              <Image src={uniIcon} alt="University" />
+              <strong>University of Strathclyde</strong>
+            </div>
+            <p>BSc Computer Science</p>
+          </section>
+        </aside>
+
+        <section class="resume__main">
+          <h2 class="titles">Work Experience</h2>
+          <article class="resume__role">
+            <h4>Software Developer</h4>
+            <h5>Pulse Streaming LTD</h5>
+            <p class="resume__muted">03/2026 · Present</p>
+            <p>
+              I built the web version of an existing Android social app (≈3,000 users), adding
+              accounts, follow/unfollow, posts/short videos, and live audio rooms for contests.
+            </p>
+            <p>
+              I designed and deployed the backend API on a DigitalOcean droplet. The React frontend
+              is hosted on GoDaddy, with MongoDB for data storage. I also implemented a virtual
+              economy where users buy gifts with diamonds (real money), creators earn gifts, convert
+              them to RCoins, and cash out via payouts.
+            </p>
+            <p>
+              Working alongside a 4–5 person Android team, I delivered feature parity as the sole
+              web developer, owning the full stack from database and API design through to UI and
+              deployment.
+            </p>
+          </article>
+
+          <article class="resume__role">
+            <h4>Software Engineer Intern</h4>
+            <h5>Technative Digital</h5>
+            <p class="resume__muted">01/2025 · 04/2025</p>
+            <p>
+              In a six‑person agile team, I built and deployed a full‑stack playlist management app
+              using React, Node.js, and Supabase, with Git feature branches and pull request code
+              reviews.
+            </p>
+            <p>
+              I owned the frontend: designing and styling responsive React UI components and the
+              overall interface. I also helped with backend troubleshooting, fixing endpoint issues
+              and validating API integration with the frontend.
+            </p>
+            <p>
+              We ran agile sprints with daily stand‑ups, code reviews, and iterative feature
+              delivery.
+            </p>
+          </article>
+
+          <article class="resume__role">
+            <h4>Automation Engineer Intern</h4>
+            <h5>Usertesting LTD</h5>
+            <p class="resume__muted">06/2023 · 09/2023</p>
+            <p>
+              I developed two production Jira automation scripts using ScriptRunner. The first was a
+              round‑robin tester assignment script that automatically distributed tickets to
+              testers, removing manual assignment.
+            </p>
+            <p>
+              The second script enforced label rules by automatically removing restricted labels
+              from tickets, preventing non‑compliant labelling. I validated both automations across
+              production workflows to ensure accuracy and consistency.
+            </p>
+          </article>
+
+          <article class="resume__role">
+            <h4>Web Developer Tutor</h4>
+            <h5>Titanium Tutors</h5>
+            <p class="resume__muted">09/2021 · 03/2026</p>
+            <p>
+              I taught long‑term clients online in HTML, CSS, and JavaScript fundamentals, using
+              hands‑on examples and guided problem‑solving so they could complete their own
+              projects.
+            </p>
+            <p>
+              I created 10+ reusable learning assets (lesson recaps, cheat sheets, exercises) in a
+              shared Google Drive to support self‑directed study. My approach focused on real‑world
+              coding examples and guided walkthroughs to build practical problem‑solving skills.
+            </p>
+          </article>
+
+          <h2 class="titles">Projects</h2>
+          <a href="/#projects" class="btn">View my projects</a>
+        </section>
+      </section>
+      <Footer />
+    </main>
+  </div>
+
+  <style>
+    .resume {
+      margin-block: var(--space-4) 0;
+
+      h4 {
+        margin-block: var(--space-4) 0;
+      }
+
+      h5 {
+        margin-block: var(--space-1) 0;
+        font-size: 1.125rem;
+      }
+
+      .resume__header {
+        margin-bottom: var(--space-12);
+
+        a {
+          color: var(--clr-brand);
+          text-decoration: underline;
+          font-weight: 700;
+          font-size: 1.2rem;
+        }
+      }
+
+      .resume__grid {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: var(--space-10);
+        margin-top: var(--space-6);
+
+        ul {
+          padding-left: 0;
+          margin: 0;
+          list-style: none;
+          margin-top: var(--space-4);
+
+          li {
+            padding: 0;
+            margin: 0;
+            padding: 0.25rem 0;
+
+            a {
+              display: flex;
+              align-items: center;
+              width: 80%;
+
+              gap: var(--space-2);
+              color: var(--clr-brand);
+
+              img {
+                --dimension: 2.25rem;
+                width: var(--dimension);
+                height: var(--dimension);
+              }
+            }
+
+            &:last-of-type {
+              margin-bottom: var(--space-8);
+            }
+          }
+        }
+
+        .resume__education {
+          div {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-top: var(--space-3);
+            font-weight: 900;
+          }
+
+          img {
+            --dimension: 2.25rem;
+            width: var(--dimension);
+            height: var(--dimension);
+          }
+          p {
+            width: 100%;
+            margin: 0;
+          }
+        }
+
+        .resume__main {
+          margin-bottom: calc(var(--space-10) + 4.125rem);
+        }
+
+        .resume__role {
+          margin-bottom: var(--space-12);
+
+          & > p {
+            margin-top: var(--space-1);
+          }
+
+          .resume__muted {
+            color: var(--clr-grey);
+            font-size: 0.985rem;
+            margin: var(--space-3) 0 0;
+          }
+        }
+      }
+
+      .btn {
+        margin-top: var(--space-8);
+      }
+    }
+  </style>
+</BaseLayout>

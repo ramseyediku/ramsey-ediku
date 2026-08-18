@@ -11,8 +11,8 @@ import closeIcon from "../assets/close.svg";
 <footer class="footer" id="contact">
   <h2 class="titles">Let’s build together</h2>
   <p class="footer__description">
-    Whether you want to start a new project, collaborate on a creative idea, or just say hello, my
-    inbox is open.
+    If you want to start a project, collaborate on an idea, or just say hello, my inbox is open.
+    Reach me out using the button below.
   </p>
   <div class="contact-wrap">
     <button id="contactBtn" class={"btn footer__button"} aria-haspopup="true" aria-expanded="false"
@@ -28,7 +28,7 @@ import closeIcon from "../assets/close.svg";
     >
       <ul>
         <li>
-          <a href="https://www.linkedin.com/ramseyediku" target="_blank"
+          <a href="https://www.linkedin.com/in/ramseyediku" target="_blank"
             ><Image src={linkedinIcon} alt="LinkedIn" class="popover-icon" />LinkedIn</a
           >
         </li>
@@ -52,7 +52,7 @@ import closeIcon from "../assets/close.svg";
   <div class="contact-modal__backdrop" data-open="false"></div>
   <div class="contact-modal__panel" role="dialog" aria-modal="true" aria-label="Contact form">
     <header class="contact-modal__header">
-      <h3>Contact Me</h3>
+      <h3 class="titles">Contact Me</h3>
       <button id="modalClose" aria-label="Close contact form">
         <Image src={closeIcon} alt="close icon for form modal" />
       </button>
@@ -91,7 +91,7 @@ import closeIcon from "../assets/close.svg";
     <a href="#about">Home</a>
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
-    <a href="#Resume">Resume</a>
+    <a href="/resume">Resume</a>
   </div>
   <p>©{currentYear} Ramsey Ediku. All rights reserved.</p>
 </div>
@@ -120,7 +120,7 @@ import closeIcon from "../assets/close.svg";
   .contact-popover {
     position: absolute;
     left: 115%;
-    top: -40%;
+    top: -25%;
     transform: scale(0.5);
     background-color: var(--clr-dark);
     color: var(--clr-light);
@@ -254,6 +254,7 @@ import closeIcon from "../assets/close.svg";
 
     h3 {
       margin: 0;
+      font-size: 2rem;
     }
 
     button {
@@ -317,7 +318,7 @@ import closeIcon from "../assets/close.svg";
   }
 </style>
 
-<script type="module">
+<script type="module" is:inline>
   const btn = document.getElementById("contactBtn");
   const pop = document.getElementById("contactPopover");
 
@@ -387,16 +388,6 @@ import closeIcon from "../assets/close.svg";
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeModal();
-    });
-
-    contactForm?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      // simple submit stub - replace with real integration
-      const data = new FormData(contactForm);
-      console.log("Contact form submitted", Object.fromEntries(data.entries()));
-      closeModal();
-      // show brief confirmation (optional)
-      alert("Thanks — your message was sent (demo).");
     });
   }
 </script>
